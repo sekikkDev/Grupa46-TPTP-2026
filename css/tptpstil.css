@@ -1,0 +1,88 @@
+/* DEFINISEMO NEKE GLOBALNE STVARI*/
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/nts/Montserrat.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/Inter.ttf') format('truetype');
+}
+
+:root {
+    /* varijable izvucene iz dizajna sajta napravljenog u Figmi*/
+
+    --light-mode-bg: #F9FAFB;
+    --light-mode-card: #F9FAFB;
+    --light-mode-smallcard: var(--blue-100);
+    --light-mode-txt: black;
+    --light-mode-footer: #c0a4a4;
+    --light-mode-header-glass: rgba(255, 255, 255, 0.7);
+    --light-mode-header-border: 1px solid rgba(255, 255, 255, 0.3);
+    --light-mode-input: var(--light-mode-bg);
+
+    --dark-mode-bg: #070B16;
+    --dark-mode-card: #111827;
+    --dark-mode-smallcard: #1E2E55;
+    --dark-mode-txt: #e2dcdc;
+    --dark-mode-footer: #111827;
+    --dark-mode-header-glass: rgba(17, 24, 39, 0.7);
+    --dark-mode-header-border: 1px solid rgba(255, 255, 255, 0.05);
+    --dark-mode-input: #293243;
+
+    --current-mode-bg: var(--light-mode-bg);
+    --current-mode-card: var(--light-mode-card);
+    --current-mode-smallcard: var(--light-mode-smallcard);
+    --current-mode-txt: var(--light-mode-txt);
+    --current-mode-footer: var(--blue-100);
+    --current-mode-header-glass: var(--light-mode-header-glass);
+    --current-mode-header-border: var(--light-mode-header-border);
+    --current-mode-input: var(--light-mode-input);
+
+    --blue-50:  #EFF6FF;
+    --blue-100: #DBEAFE;
+    --blue-400: #60A5FA;
+    --blue-500: #3B82F6;
+    --blue-600: #2563EB;
+    --blue-700: #1D4ED8;
+    --blue-800: #1E40AF;
+    --blue-900: #1E3A8A;
+    --blue-950: #172554;
+
+    --blue-dark-gradient: linear-gradient(90deg,var(--blue-500) 0%, var(--blue-500) 135%);
+    --blue-light-gradient: linear-gradient(180deg, var(--blue-100) 0%, var(--blue-400) 260%);
+
+}
+
+/* u dark modu mijenjamo sve current varijable da budu dark*/
+body.dark {
+    --current-mode-bg: var(--dark-mode-bg);
+    --current-mode-card: var(--dark-mode-card);
+    --current-mode-smallcard: var(--dark-mode-smallcard);
+    --current-mode-txt: var(--dark-mode-txt);
+    --current-mode-footer: var(--dark-mode-footer);
+    --current-mode-header-glass: var(--dark-mode-header-glass);
+    --current-mode-header-border: var(--dark-mode-header-border);
+    --current-mode-input: var(--dark-mode-input);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    font-family: Inter, Montserrat, Helvetica;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
