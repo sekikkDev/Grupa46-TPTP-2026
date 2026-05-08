@@ -12,3 +12,5 @@ Web stranica za lokalnu firmu iz Tuzle koja se bavi profesionalnim 3D printanjem
 - **Medina Mustafić** (@) — HTML/CSS
 - **Mario Kovačević** (@) — HTML/CSS
 
+## Link
+Sajt možete pogledati [ovdje.](sekikkdev.github.io/Grupa46-TPTP-2026)
