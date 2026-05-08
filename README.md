@@ -10,7 +10,7 @@ Web stranica za lokalnu firmu iz Tuzle koja se bavi profesionalnim 3D printanjem
 ## Članovi grupe
 - **Medin Šećić** (@sekikkDev) — Design, JS, dio HTML/CSS
 - **Medina Mustafić** (@) — HTML/CSS
-- **Mario Kovačević** (@) — HTML/CSS
+- **Mario Kovačević** (@MarioKovacevicc) — HTML/CSS
 
 ## Link
 Sajt možete pogledati [ovdje.](https://sekikkdev.github.io/Grupa46-TPTP-2026/)
