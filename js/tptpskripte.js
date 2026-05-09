@@ -24,13 +24,14 @@ window.addEventListener('load', () => {
 
 const toggle = document.getElementById('dark-mode-toggle');
 
-// pri ucitavanju stranice provjeravamo da li vec postoji neka tema u localStorage
 if (localStorage.getItem('tema') === 'dark') {
-        // provjeravamo samo dark temu jer je light tema default
+        // provjeravamo da li postoji dark tema unutar localStorage
+        // provjeravamo  samo dark temu jer je light tema default
+
         document.body.classList.add('dark');
         toggle.checked = true;
 
-        // dodajemo .dark klasu na body, cime se se promijeniti --current varijable u css i jos neki dijelovi definisani sa body.dark
+        // dodajemo .dark klasu na body, cime ce se promijeniti --current varijable u css i jos neki dijelovi definisani sa body.dark
         // checkiramo dark mode element, da bi se aktivirao css ikonice u navigaciji
 }
 
@@ -43,3 +44,14 @@ toggle.addEventListener('change', () => {
     // DA = dark ; NE = light
     localStorage.setItem('tema', toggle.checked ? 'dark' : 'light');
 });
+
+// default tipka za checkbox je space, ali obicno se koristi tipka enter prilikom navigacije sa tab tipkom, odnosno preko fokusiranja elemenata
+// ovim dijelom koda efektivno simuliramo klik space dugmeta kada kliknemo enter
+toggle.addEventListener("keydown", (e) => {
+    if (e.key == "Enter") {
+        toggle.checked = !toggle.checked;
+        toggle.dispatchEvent(new Event('change'));
+
+        // dispatchEvent funkcija okida event na elementu, kao da je to korisnik sam uradio, time uspjesno simuliramo space tipku na checkbox
+    }
+})
