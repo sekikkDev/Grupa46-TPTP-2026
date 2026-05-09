@@ -121,3 +121,236 @@ body {
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
+
+/*-----------NAV (mario) ------------*/
+
+header {
+    width: 100vw;
+    height: 9vh;
+
+    font-size: 1.3rem;
+
+    display: flex;
+    justify-content: space-between; /* logo je lijevo, linkovi su desno */
+
+    /* u ovom dijelu koda pravimo tkzv. glassmorphism efekat navigacije */
+    /* ovaj efekat se primjeti ukoliko skrolamo stranicu pa se navigacija nalazi preko nekog sarenog elementa */
+    background: var(--current-mode-header-glass); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border-bottom: var(--current-mode-header-border);
+
+
+    box-sizing: border-box; /* padding se racuna u ukupnu velicinu elementa */
+    padding: 0 6em; /* odvajamo elemente navigacije od stranica "monitora" */
+
+    box-shadow: 0px 5px 30px rgba(0,0,0,0.15);
+    
+    position: fixed; /* navigacija je uvijek "zalijepljena" na vrh, cak i kada skrolamo dole */
+    z-index: 100; /* osiguravamo da se navigacija uvijek vidi - da nema elemenata preko nje kada skrolamo dole */
+}
+
+
+
+/*----------- NAV LOGO (mario) -----------*/
+
+.nav-logo {
+    height: 100%;
+    font-size: 1.5rem; /* 1rem = 16px*/
+
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    user-select: none; /*sklanjamo opciju selektovanja teksta jer ruzno izgleda */
+}
+
+.nav-logo img {
+    width: 3em; /* slika prati velicinu fonta logoa*/
+}
+
+.nav-logo .logo-txt {
+    font-weight: 600;
+    color: var(--current-mode-txt);
+}
+
+/* kada je light mode svijetli logo se ne vidi */
+.light-logo-img {
+    display: none;
+}
+
+/* kada je dark mode tamni logo se ne vidi */
+body.dark .dark-logo-img {
+    display: none
+}
+
+/* kada je dark mode svijetli logo se vidi */
+body.dark .light-logo-img {
+    display: block;
+}
+
+/* tamni logo se sam vidi zbog same definicije html koda */
+
+
+/*------- NAV LINKS (mario) -------------*/
+
+.nav-main {
+    display: flex;
+    align-items: center;
+    justify-content: end; 
+    
+    font-size: 0.9em;
+
+    width: 35%; /* element sa linkovima zauzima 35% ukupne navigacije */
+    height: 100%;
+
+    gap: 1.1em;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-el {
+    padding: 0 1em;
+}
+
+.nav-link {
+    color: var(--current-mode-txt);
+    user-select: none; /* sklanjamo opciju selektovanja teksta zbog ruznog izgleda*/
+
+    transition: color 0.1s ease-out, transform 0.2s ease-out;
+
+}
+
+.nav-btns {
+    height: 100%;
+
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+
+    gap: 1.4em; /* razmak izmedju elemenata koji se skalira proporcionalno fontu*/
+
+    position: relative; /* pozicija relativna jer koristimo ::before element*/
+}
+
+/* pomocu ::before elementa pravimo liniju za odvajanje tekstualnih linkova i ikonica*/
+.nav-btns::before {
+    content:'';
+    position: absolute;
+    width: 1px;
+    height: 70%;
+
+    /* linija postavljena na mjesto odredjeno dizajnom stranice */
+    top: 50%;
+    left: -25%;
+    transform: translate(-50%, -50%);
+
+    background: var(--current-mode-txt);
+    opacity: 0.2;
+}
+
+.nav-btns .nav-btn {
+    width: 100%;
+    height: 100%;
+
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+}
+
+.github-link svg {
+    color: var(--current-mode-txt);
+
+}
+
+/* posto imamo :hover, tranizija je potrebna za ljepsi izgled*/
+.github-link svg path {
+    transition: all 0.2s ease-out;
+}
+
+
+/*------- DARK MODE BUTTON (mario) --------*/
+
+.nav-btns .nav-btn svg {
+    display: block;
+
+    width: 1.2em;
+    aspect-ratio: 1/1;
+
+    /* mijenjamo izgled svg-a */
+    fill: none;
+    stroke: var(--current-mode-txt);
+    stroke-width: 2;
+    stroke-linecap: round;
+
+    transition: transform 0.5s ease-out, stroke 0.1s ease-out;
+}
+
+/* checkbox koji se ne vidi, ali posto imamo label on se moze checkirati*/
+#dark-mode-toggle {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.dark-mode-label {
+    display: inline;
+    cursor: pointer;
+}
+
+/* animacija dark mode ikonice*/
+/* kada se checkbox klikne desava se animacija rotiranja svg*/
+/* osim sto se on rotira on se u momentu rotiranja mijenja iz mjeseca u sunce ili obrnuto*/
+
+#dark-mode-toggle:checked + svg {
+    transform: rotate(-360deg);
+}
+
+.sun-circle,
+.sun-rays line {
+    transition: opacity 0.2s ease-out;
+}
+
+/* posto je default mode stranice light mode, ikonica mjeseca ne treba biti vidljiva*/
+.nav-btns .mode-btn .moon-path {
+    opacity: 0;
+}
+/* checkiran checkbox definiran je kao odabir dark moda, pa kada je on checkiran prikazuje se mjesec*/
+#dark-mode-toggle:checked + svg .moon-path {
+    opacity: 1;
+}
+/* prateci prosli komentar, kada je dark mode izabran sunce se ne vidi*/
+#dark-mode-toggle:checked + svg .sun-circle,
+#dark-mode-toggle:checked + svg .sun-rays{
+    opacity: 0;
+}
+/* kada se checkbox un-checkira, css automatski ponavlja cijeli proces ali samo suprotno - sunce se vraća, mjesec nestaje */
+
+
+/*------------ NAV HOVER/FOCUS (mario) -----------------*/
+
+/* prelazom misa preko bilo kojeg elementa na desnoj strani navigacije mijenjamo boju elementa*/
+
+.nav-link:hover,
+.nav-link:focus {   
+    display: inline-block;
+    color: var(--blue-600);
+}
+
+.github-link:hover svg path,
+.github-link:focus svg path{
+    stroke: var(--blue-600);
+}
+
+.dark-mode-label:hover svg {
+    stroke: var(--blue-600);
+}
+
+#dark-mode-toggle:focus + svg {
+    stroke: var(--blue-600);
+}
