@@ -9,7 +9,7 @@ Web stranica za lokalnu firmu iz Tuzle koja se bavi profesionalnim 3D printanjem
 
 ## Članovi grupe
 - **Medin Šećić** (@sekikkDev) — Design, JS, dio HTML/CSS
-- **Medina Mustafić** (@) — HTML/CSS
+- **Medina Mustafić** (@mustafic711) — HTML/CSS
 - **Mario Kovačević** (@MarioKovacevicc) — HTML/CSS
 
 ## Link
