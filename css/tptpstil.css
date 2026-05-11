@@ -816,3 +816,107 @@ body.dark .faq {
 .faq .why {
     font-weight: 400;
 }
+
+/*----------------- FOOTER --------------------*/
+
+#footer {
+    width: 100%;
+    position: sticky; /* footer je uvijek zalijepljen za dno, ali preko njega je ostatak sadrzaja pa dobijamo lijep efekat "paravana"*/
+    bottom: 0;
+    z-index: 1; /* sadrzaj je na z-index 2, tako da ovo je ispod*/
+    background: var(--current-mode-footer);
+    color: var(--current-mode-txt);
+
+    overflow-x: hidden;   /* desavalo se neko preljevanje sadrzaja  horizontalno, ovim ukidamo to*/
+}
+
+.footer-main {
+    display: flex;
+    justify-content: center;
+    gap: 4em;
+    padding: 3em 0;
+
+    box-sizing: border-box;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;   
+}
+
+.footer-col h4 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+.social-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.7em;
+}
+
+.social-btn {
+    color: var(--light-mode-txt);
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: color 0.15s ease-out;
+    color: var(--current-mode-txt);
+}
+
+.social-btn:hover {
+    color: var(--blue-600);
+}
+
+/* mijenjamo boju kada se predje misem preko ikonica u dark modu*/
+body.dark .social-btn:hover {
+    color: var(--blue-500);
+}
+
+.social-btn svg {
+    width: 1.8em;
+    pointer-events: none;
+}
+
+.footer-col p{
+    opacity: 0.7;
+}
+
+.footer-bottom {
+    width: 100%;
+    padding: 1.2em 0;
+    text-align: center;
+    position: relative;
+    color: var(--blue-950);
+    user-select: none;
+}
+
+.footer-bottom::before {
+    /*linija iznad donje linije footera*/
+    /*moglo se i pomocu border-top ali ovako mozemo namjestat opacity boje u var()*/
+
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: var(--blue-600);
+    top: 0;
+    left: 0;
+    opacity: 0.5;
+}
+
+/* mijenjamo boju linije u dark modu*/
+body.dark .footer-bottom::before {
+    background: var(--blue-100);
+}
+
+/* mijenjamo boju donjeg dijela footera u dark modu*/
+body.dark .footer-bottom {
+    color: var(--blue-100);
+    opacity: 0.5;
+}
