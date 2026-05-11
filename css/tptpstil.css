@@ -697,3 +697,122 @@ body.dark .card:focus {
 .card-btn:focus > svg{
     animation: bounce 0.7s infinite ease-in-out;
 }
+
+
+/* -------------------------- ASIDE (mario) ----------------------------- */
+
+#aside {
+    flex: 1.2; /* definisemo omjer */
+    /* omjer je filter:cards:aside 0.9:3:1.2*/
+    /* na taj nacin ce se kontent raspodjeliti*/
+
+
+    position: sticky; /* ovaj aside nas prati dok skrolamo isto kao filter*/
+    top: 15vh; /*posto imamo padding-top: 15vh na #content*/
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+
+    gap: 2em;
+}
+
+.loc {
+    width: 100%;
+    overflow: hidden; /* preljevanje je sakriveno kako bi mapa preuzela border radius*/
+    border-radius: 1.25em;
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+
+    border: 1px solid rgba(0,0,0,.03);
+}
+
+/* mijenjamo border u dark modu */
+body.dark .loc {
+    border-color: rgba(255,255,255,0.15);
+}
+
+.gmap {
+    width: 100%;
+    height: 10em;
+
+}
+
+.gmap iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* mapa prekriva svoj parent element*/
+}
+
+.loc-txt-holder {
+    background-color: var(--current-mode-card);
+    color: var(--current-mode-txt);
+
+    padding: 1.5em;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5em;
+}
+
+.loc-txt {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.loc-desc {
+    font-size: 0.85em;
+    opacity: 0.8;
+}
+
+.faq {
+    width: 100%;
+    font-size: 1em;
+
+    background: var(--current-mode-smallcard);
+    color: var(--current-mode-txt);
+    border: 1px solid var(--blue-500);
+    border-radius: 1.25em;
+
+    box-sizing: border-box;
+    padding: 1.5em;
+
+    display: flex;
+    align-self: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
+/* mijenjamo border u dark modu*/
+body.dark .faq {
+    border-color: var(--blue-800);
+}
+
+.faq-items {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.9em;    
+}
+
+.faq-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
+
+    font-size: 0.9em;
+    font-weight: 300;
+}
+
+.faq-item svg {
+    width: 0.7em;
+    fill: var(--blue-500);
+}
+
+.faq .why {
+    font-weight: 400;
+}
