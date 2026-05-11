@@ -354,3 +354,346 @@ body.dark .light-logo-img {
 #dark-mode-toggle:focus + svg {
     stroke: var(--blue-600);
 }
+
+
+
+/*-------------------- CONTENT (medina) ----------------------*/
+
+#content {
+    /*sekcija zauzima sav moguci prostor na stranici*/
+    flex: 1;
+
+    background-color: var(--current-mode-bg);
+    width: 100vw;
+    min-height: 100vh; 
+
+    box-sizing: border-box; /*da se padding racuna u ukupnu velicinu elementa*/
+
+    padding: 0 7em;
+    padding-top: 15vh; /* odvajamo od headera */
+    padding-bottom: 10vh;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 3em; /* razmak izmedju elemenata od 3 font velicine */
+
+    z-index: 2;
+
+}
+
+.side-filter {
+    flex: 0.9; /* definisemo omjer kojim ce se podijeliti elementi u #content */
+
+    background: var(--current-mode-card);
+    border-radius: 1.25em; 
+
+    box-shadow: 0 0 50px rgba(0,0,0,0.1); /* sjena */
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+
+    box-sizing: border-box;
+    padding: 1.5em;
+    gap: 1.5em;
+
+    position: sticky; /* kada skrolamo nad #content filter nas prati*/
+    top: 15vh; /*posto imamo padding-top: 15vh na #content*/
+
+    color: var(--current-mode-txt);
+
+    border: 1px solid rgba(0,0,0,.03);
+}
+
+/* u dark modu mijenjamo border elementa*/
+body.dark .side-filter {
+    border-color: rgba(255,255,255,0.1);
+}
+
+#filter {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+
+    gap: 0.5em;
+}
+
+
+.filter-name {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.filter-item {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 0.7em 1em;
+
+    border-radius: 0.75em;
+    border: 1px solid; 
+    border-color: rgba(0,0,0,0.03); /* mali border koji se ne vidi, ali je bitan jer je bitan na dark modu*/
+                                      /* da ove linije nema, kartica bi "skakutala" prilikom odjednom postavljenog bordera*/
+                                      /* prilikom postavljanja dark moda */
+
+    box-shadow: 0 0 20px rgba(0,0,0,.05);
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5em;
+
+    user-select: none; /* korisnik ne moze selektovat tekst na filter-item, jer ne izgleda lijepo kada se slucajno desi*/
+
+    transition: all 0.1s ease-in-out;
+
+    color: var(--current-mode-txt);
+
+}
+
+/* mijenjamo boju filtera u dark modu*/
+body.dark .filter-item {
+    background-color: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.05);
+}
+
+.filter-icon {
+    width: 1.25em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-icon svg {
+    width: 1.25em;
+    aspect-ratio: 1/1;
+    display: block;
+    stroke: currentColor; /* ovo naglasava svg da koristi trenutnu boju fonta parent elementa */
+    fill: none;
+    stroke-width: 0.1px;
+}
+
+.filter-txt {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+/* aktivni filter element ima poseban stil*/
+.active {
+    color: white;
+    background: var(--blue-dark-gradient);
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+}
+
+
+
+#counter {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1em;
+
+    background: var(--current-mode-smallcard);
+    border-radius: 0.75em;
+    border: 1px solid var(--blue-500);
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.7em;
+}
+
+body.dark #counter {
+    border-color: var(--blue-800);
+}
+
+#counter .counter-txt {
+    font-size: 0.8em;
+    color: var(--blue-950)
+}
+
+body.dark #counter .counter-txt {
+    color: rgba(255,255,255,.5)
+}
+
+#counterNum {
+    color: var(--blue-600);
+    font-weight: 500;
+    font-size: 1.8em;
+}
+
+body.dark #counterNum {
+    color: var(--blue-500);
+}
+
+.cards {
+    flex: 3;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    color: var(--current-mode-txt);
+}
+
+.cards .title {
+    margin-bottom: 0.3em;
+    font-size: 1.6em;
+}
+
+.cards .desc {
+    opacity: 0.8; /* malo manji opacity da bi se dobila hijerarhija citanja*/
+    font-size: 0.9em;
+}
+
+#cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* grid je raspodjeljen u 3 jednake kolone, */
+                                           /* redovi se automatski prave ukoliko ima dovoljno elemenata*/
+
+    grid-auto-rows: 25.5em; /* velicina reda*/
+    gap: 1rem; /* razmak izmedju kartica*/
+
+    margin-top: 2em;
+}
+
+.card {
+    background-color: var(--current-mode-card);
+
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 1.25em;
+    
+    border: 1px solid rgba(0,0,0,.03);
+
+    overflow: hidden; /* ovo je stavljeno radi slike u kartici, da bi ona poprimila isti border radius*/ 
+    
+    box-shadow: 0 0 20px rgba(0,0,0,.1);
+    transition: all 0.2s ease-out;
+}
+
+body.dark .card {
+    border-color: rgba(255,255,255,0.1);
+}
+
+.card-img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover; /* slika je takve velicine da pokriva citav parent element*/
+}
+
+.card-content {
+    height: 50%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    gap: 0.9em;
+
+    box-sizing: border-box;
+    padding: 1em;
+
+    color: var(--current-mode-txt);
+
+}
+
+.card-type {
+    font-size: 0.7em;
+    font-weight: 500;
+    padding: 0.5em 1em;
+    background-color: var(--current-mode-smallcard);
+    border: 1px solid var(--blue-400);
+    border-radius: 100px; /* postizemo oblik pilule*/
+
+    color: var(--blue-600);
+}
+
+body.dark .card-type {
+    color: var(--blue-400);
+}
+
+.card-name {
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.card-desc {
+    font-size: 0.8em;
+}
+
+.card-btn {
+    width: 100%;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: Inter;
+
+    background: var(--blue-dark-gradient);
+    color: white;
+
+    border: none;
+    border-radius: 0.75em;
+
+    padding: 0.7em;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.2em;
+
+    outline: none; /* prilikom :focus da se ne stvara crni outline*/
+
+    transition: scale 0.3s ease-out;
+}
+
+.card-btn svg{
+    width: 1em;
+    aspect-ratio: 1/1;
+    fill: currentColor; /*svg je boje teksta parent elementa (u ovom slucaju .card-btn)*/
+
+    transition: transform 0.2s ease-out;
+}
+
+.card:hover,
+.card:focus {
+    outline: none;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0,0,0,.1), 0 0 0 1px var(--blue-400); /* border se cudno ponasa na hover, pa pravimo border pomocu box-shadow*/
+}
+
+body.dark .card:hover,
+body.dark .card:focus {
+    box-shadow: 0 0 20px rgba(0,0,0,.1), 0 0 0 1px var(--blue-700); /* border se cudno ponasa na hover, pa pravimo border pomocu box-shadow*/
+}
+
+/* animacija svg na buttonu*/
+@keyframes bounce {
+    0% {
+        transform: translateX(0em);
+    }
+
+    50% {
+        transform: translateX(0.5em);
+    }
+
+    100% {
+        transform: translateX(0em);
+    }
+}
+
+.card-btn:hover,
+.card.btn:focus {
+    scale: 1.05;
+}
+
+.card-btn:hover > svg,
+.card-btn:focus > svg{
+    animation: bounce 0.7s infinite ease-in-out;
+}
