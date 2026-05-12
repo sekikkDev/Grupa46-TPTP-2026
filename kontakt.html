@@ -56,5 +56,96 @@
             </div>
         </nav>
     </header>
+    <main id="contact">
+        <div class="contact-hero">
+            <h1>Kontaktirajte nas</h1>
+            <p>Rado ćemo odgovoriti na sva vaša pitanja</p>
+        </div>
+
+        <div class="contact-info-cards">
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor"><path d="M61.4 64C27.5 64 0 91.5 0 125.4 0 126.3 0 127.1 .1 128L0 128 0 384c0 35.3 28.7 64 64 64l384 0c35.3 0 64-28.7 64-64l0-256-.1 0c0-.9 .1-1.7 .1-2.6 0-33.9-27.5-61.4-61.4-61.4L61.4 64zM464 192.3L464 384c0 8.8-7.2 16-16 16L64 400c-8.8 0-16-7.2-16-16l0-191.7 154.8 117.4c31.4 23.9 74.9 23.9 106.4 0L464 192.3zM48 125.4C48 118 54 112 61.4 112l389.2 0c7.4 0 13.4 6 13.4 13.4 0 4.2-2 8.2-5.3 10.7L280.2 271.5c-14.3 10.8-34.1 10.8-48.4 0L53.3 136.1c-3.3-2.5-5.3-6.5-5.3-10.7z"/></svg>
+                </div>
+                <h4>Email</h4>
+                <p>info@3dfabrika.com</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 5.5C3 14.0604 9.93959 21 18.5 21C18.8862 21 19.2691 20.9859 19.6483 20.9581C20.0834 20.9262 20.3009 20.9103 20.499 20.7963C20.663 20.7019 20.8185 20.5345 20.9007 20.364C21 20.1582 21 19.9181 21 19.438V16.6207C21 16.2169 21 16.015 20.9335 15.842C20.8749 15.6891 20.7795 15.553 20.6559 15.4456C20.516 15.324 20.3262 15.255 19.9468 15.117L16.74 13.9509C16.2985 13.7904 16.0777 13.7101 15.8683 13.7237C15.6836 13.7357 15.5059 13.7988 15.3549 13.9058C15.1837 14.0271 15.0629 14.2285 14.8212 14.6314L14 16C11.3501 14.7999 9.2019 12.6489 8 10L9.36863 9.17882C9.77145 8.93713 9.97286 8.81628 10.0942 8.64506C10.2012 8.49408 10.2643 8.31637 10.2763 8.1317C10.2899 7.92227 10.2096 7.70153 10.0491 7.26005L8.88299 4.05321C8.745 3.67376 8.67601 3.48403 8.55442 3.3441C8.44701 3.22049 8.31089 3.12515 8.15802 3.06645C7.98496 3 7.78308 3 7.37932 3H4.56201C4.08188 3 3.84181 3 3.63598 3.09925C3.4655 3.18146 3.29814 3.33701 3.2037 3.50103C3.08968 3.69907 3.07375 3.91662 3.04189 4.35173C3.01413 4.73086 3 5.11378 3 5.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h4>Telefon</h4>
+                <p>+387 61 123 456</p>
+            </div>
+            <div class="info-card">
+                <div class="info-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <h4>Adresa</h4>
+                <p>Stupine, Lamela H<br>75000 Tuzla</p>
+            </div>
+        </div>
+
+        <div class="form-wrapper">
+            <h2>Pošaljite nam poruku</h2>
+            <form id="contact-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ime">Ime <span class="required">*</span></label>
+                        <input type="text" id="ime" placeholder="Unesite vaše ime">
+                        <span class="error-msg" id="ime-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="prezime">Prezime <span class="required">*</span></label>
+                        <input type="text" id="prezime" placeholder="Unesite vaše prezime">
+                        <span class="error-msg" id="prezime-error"></span>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email <span class="required">*</span></label>
+                        <input type="text" id="email" placeholder="vas.email@example.com">
+                        <span class="error-msg" id="email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefon">Telefon <span class="required">*</span></label>
+                        <input type="text" id="telefon" placeholder="+381 11 123 4567">
+                        <span class="error-msg" id="telefon-error"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tema">Tema upita <span class="required">*</span></label>
+                    <select id="tema">
+                        <option value="">Izaberite temu...</option>
+                        <option value="narudzba">Nova narudžba</option>
+                        <option value="upit">Opći upit</option>
+                        <option value="reklamacija">Reklamacija</option>
+                        <option value="saradnja">Saradnja</option>
+                    </select>
+                    <span class="error-msg" id="tema-error"></span>
+                </div>
+                <div class="form-group">
+                    <label for="poruka">Poruka <span class="required">*</span></label>
+                    <textarea id="poruka" placeholder="Opišite vaš upit ili zahtev..."></textarea>
+                    <span class="error-msg" id="poruka-error"></span>
+                </div>
+                <div class="form-btns">
+                    <button type="submit" class="btn-send">
+                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path fill="currentColor" d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        Pošalji poruku
+                    </button>
+                    <button type="button" class="btn-reset" id="btn-reset">Resetuj</button>
+                </div>
+            </form>
+            <div class="success-msg" id="success-msg"></div>
+        </div>
+    </main>
 </body>
 </html>
