@@ -177,3 +177,170 @@ if (document.getElementById("filter")) {
         })
     }
 }
+
+/*------------------------------KONTAKT FORMA-------------------------------------------*/
+
+if (document.getElementById('contact-form')) {
+
+    const form = document.getElementById('contact-form');
+    const ime = document.getElementById('ime');
+    const prezime = document.getElementById('prezime');
+    const email = document.getElementById('email');
+    const telefon = document.getElementById('telefon');
+    const tema = document.getElementById('tema');
+    const poruka = document.getElementById('poruka');
+
+    const imeError = document.getElementById('ime-error');
+    const prezimeError = document.getElementById('prezime-error');
+    const emailError = document.getElementById('email-error');
+    const telefonError = document.getElementById('telefon-error');
+    const temaError = document.getElementById('tema-error');
+    const porukaError = document.getElementById('poruka-error');
+
+    const successMsg = document.getElementById('success-msg');
+    const btnReset = document.getElementById('btn-reset');
+
+    // kada se forma submit-uje klikom na submit button
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // ukidamo reload stranice pri submit-u
+
+        // bool varijable koje nam govore da li su polja OK
+        // u definiciji ovih funkcija vracamo true ili false, 
+        // u zavisnosti je li polje ispravno na osnovu odredjenih uslova
+
+        const imeOk = validateField(ime, imeError, 'Ime je obavezno');
+        const prezimeOk = validateField(prezime, prezimeError, 'Prezime je obavezno');
+        const emailOk = validateEmail(email, emailError);
+        const telefonOk = validateTelefon(telefon, telefonError);
+        const temaOk = validateField(tema, temaError, 'Tema upita je obavezna');
+        const porukaOk = validateField(poruka, porukaError, 'Poruka je obavezna');
+
+        if (imeOk && prezimeOk && emailOk && telefonOk && temaOk && porukaOk) {
+            // sva polja ispravna -> prikazujemo uspješnu poruku
+            successMsg.textContent = `Hvala ${ime.value}! Vaša poruka je uspješno poslana.`;
+            form.reset(); // resetamo formu
+    }
+    });
+
+    // na klik reset buttona
+    btnReset.addEventListener('click', function() {
+        form.reset(); // resetira citavu formu
+
+        // brise sve error poruke
+        imeError.textContent = '';
+        prezimeError.textContent = '';
+        emailError.textContent = '';
+        telefonError.textContent = '';
+        temaError.textContent = '';
+        porukaError.textContent = '';
+
+        // sklanja error klase sa svih polja
+        document.querySelectorAll('.form-group').forEach(group => {
+            group.classList.remove('error');
+        });
+
+        // sklanja success poruku
+        successMsg.textContent = '';
+    });
+
+    //funkcija za validiranje obicnih polja za koja se samo treba provjerit da nisu prazna
+    // obicna text polja, textarea i select
+    // posto je ova funkcija "univerzalna" moramo proslijediti koja error poruka ce se prikazati
+    function validateField(input, errorEl, message) {
+        // ako je polje prazno
+        if (input.value.trim() === '') {
+            errorEl.textContent = message;
+            input.parentElement.classList.add('error');
+            return false;
+        }
+
+        // ako je sve tacno
+        errorEl.textContent = '';
+        input.parentElement.classList.remove('error');
+        return true;
+
+    }
+
+    //funkcija za validiranje emaila
+    function validateEmail(input, errorEl) {
+        //ako je polje prazno
+        if (input.value.trim() === '') {
+            errorEl.textContent = 'Email je obavezan';
+            input.parentElement.classList.add('error');
+            return false;
+        }
+        
+        //klasicni regex za validiranje maila preuzet sa interneta
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/i;
+        // ^ - pocetak
+        // [\w-\.] znaci bilo koje slovo (\w), - crtica, \. tacka
+        // @ - obavezni @ simbol 
+        // [\w-]+\. - slicno kao ime maila samo oznacava domenu sa tackama koje se mogu ponavljati (mail.google.)
+        // [\w-]{2,4} - ekstenzija od 2 do 4 karaktera (com, ba, org, info)
+
+        // a ovo je oficijalni email regex po RFC 5321 standardu
+        const RFCREGEX = /^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])$/i
+        // ne znam tacno sta znaci ova citava skalamerija,
+        // samo znam da osigurava da email ima @, domenu i ekstenziju, i da podrzava sve ostalo kao
+        // IP adrese u uglastim zagradama, specijalne znakove,
+        // quoted stringove i sve ostale dozvoljene email formate po RFC 5321 standardu.
+
+        // hvala Claude sto mi je pretvorio ovaj regex u js format
+        
+        // ako email nije ispravno unesen
+        if (!RFCREGEX.test(input.value)) {
+            errorEl.textContent = 'Email nije u ispravnom formatu';
+            input.parentElement.classList.add('error');
+            return false;
+        }
+        
+        // ako je sve tacno
+        errorEl.textContent = '';
+        input.parentElement.classList.remove('error');
+        return true;
+    }
+
+    // funkcija za validaciju telefona
+    function validateTelefon(input, errorEl) {
+        // ako je polje prazno
+        if (input.value.trim() === '') {
+            errorEl.textContent = 'Telefon je obavezan';
+            input.parentElement.classList.add('error');
+            return false;
+        }
+
+        // Regex za telefon - dozvoljava samo cifre, razmake i crtice
+        const telefonRegex = /^[0-9\s\-]+$/;
+        // ^ - pocetak
+        // [0-9\s\-]+ - jedna ili vise cifara (0-9), razmaka (\s) ili crtica (\-)
+        // $ - kraj
+
+        // ako sastav broja nije tacan
+        if (!telefonRegex.test(input.value)) {
+            errorEl.textContent = 'Telefon može sadržavati samo cifre, razmake i crtice';
+            input.parentElement.classList.add('error');
+            return false;
+        }
+
+        // ako broj ima manje od 6 karaktera
+        if (input.value.trim().length < 6) {
+            errorEl.textContent = 'Broj telefona mora imati minimalno 6 karaktera';
+            input.parentElement.classList.add('error');
+            return false;
+        }
+        
+        // ako broj ima vise od 15 karaktera
+        if (input.value.trim().length > 15) {
+            errorEl.textContent = 'Broj telefona moze imati maksimalno 15 karaktera';
+            input.parentElement.classList.add('error');
+            return false;
+        }
+
+        // ako je sve tacno
+        errorEl.textContent = '';
+        input.parentElement.classList.remove('error');
+        return true;
+    }
+}
+
+
