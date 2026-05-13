@@ -343,4 +343,22 @@ if (document.getElementById('contact-form')) {
     }
 }
 
+// ------------------ BACK TO TOP -------------------------
+if (document.getElementById('back-to-top')) {
+    const backToTop = document.getElementById('back-to-top');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            // ako korisnik skrola 50px ili vise od vrha back to top button se pojavi
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    });
+    
+    // kada se button klikne stranica se smoothly skroluje na vrh
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
