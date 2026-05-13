@@ -1169,3 +1169,204 @@ body.dark *::placeholder {
     font-weight: 500;
     color: var(--blue-600);
 }
+
+/*-----------------------------------------------------------------------------------------*/
+/*------------------------------SADRZAJ STRANICA-------------------------------------------*/
+/*-----------------------------------------------------------------------------------------*/
+
+#sadrzaj {
+    width: 100vw;
+    min-height: 100vh;
+    box-sizing: border-box; /* padding elementa se racuna u ukupnu velicinu elementa */
+    padding: 0 10em;
+    padding-top: 15vh; /* odvajamo kontent od headera */
+    padding-bottom: 5em; /* odvajamo kontent od footera */
+    background: var(--current-mode-bg);
+    flex: 1;
+    z-index: 2; /*  */
+
+    color: var(--current-mode-txt);
+}
+
+.sadrzaj-hero {
+    margin-bottom: 2em;
+}
+
+.sadrzaj-hero h1 {
+    font-size: 2.3rem;
+    font-weight: 700;
+    margin-bottom: 0.3em;
+}
+
+.sadrzaj-hero p {
+    opacity: 0.8; /* smanjujemo opacity da bi se vise istakao naslov od paragrafa */
+}
+
+
+/* ------------------------- BOOKMARK NAVIGACIJA ----------------------------------*/
+
+.bookmark-nav {
+    background: var(--current-mode-card);
+    padding: 1.5em;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    margin-bottom: 3em;
+    border-radius: 1.25em; /* zakrivljenost bordera prati velicinu fonta */
+    display: flex;
+    flex-direction: column; /* sadrzaj je rasporedjen vertikalno */
+    gap: 1em;
+}
+
+.bookmark-title {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.bookmark-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7em;
+}
+
+.bookmark-link {
+    padding: 0.5em 1.2em;
+    background: var(--current-mode-smallcard);
+    color: var(--blue-600);
+    font-size: 0.9em;
+    border-radius: 0.75em;
+    font-weight: 500;
+    border: 1px solid var(--blue-400);
+    transition: all 0.2s ease;
+}
+
+/* u tamnom modu boja teksta se mijenja*/
+body.dark .bookmark-link {
+    color: var(--blue-400);
+}
+
+.bookmark-link:hover {
+    background: var(--blue-500);
+    color: white;
+}
+
+/* u tamnom modu drugacija je boja teksta kada se predje kursorom*/
+body.dark .bookmark-link:hover {
+    color: white;
+
+}
+
+/* ------------------------ OPIS SEKCIJA ---------------------------------*/
+
+.sadrzaj-section {
+    margin-bottom: 4em;
+    scroll-margin-top: 12vh;
+
+    /* scroll-margin-top dodaje virtualni razmak iznad elementa kada se na njega skrola */
+    /* koristimo ga jer imamo navigaciju visine ~9vh */
+    /* bez ovog, kad kliknemo bookmark link, header bi prekrio vrh sekcije */
+    /* 12vh = malo vise od visine headera da bude lijep razmak */
+}
+
+.sadrzaj-section h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 1em;
+}
+
+.sadrzaj-section p {
+    opacity: 0.8;
+    line-height: 1.7;
+    margin-bottom: 0.8em;
+}
+
+/* -------------------- TABELA ------------------------------*/
+
+.table-wrapper {
+    background: var(--current-mode-card);
+    border-radius: 1.25em;
+    padding: 0.8em;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    overflow-x: auto; /* ukoliko se tabela preljeva pojavit ce se horizontalni scroll bar za tabelu */
+}
+
+.materials-table {
+    width: 100%;
+    border-collapse: collapse; /* da ne bi doslo do duplog bordera ( || ) izmedju celija ovo spaja u jedan ( | ) */
+    font-size: 0.95em;
+}
+
+.materials-table th {
+    text-align: left; /* tekst u headeru tabele je pozicioniran lijevo u celiji */
+    padding: 1em;
+    font-weight: 600;
+    border-bottom: 2px solid var(--blue-100);
+    color: var(--blue-900);
+}
+
+body.dark .materials-table th {
+    border-color: var(--current-mode-input);
+    color: var(--blue-500);
+}
+
+.materials-table td {
+    padding: 1em;
+    border-bottom: 1px solid;
+    border-color: var(--blue-50);
+    opacity: 0.8;
+}
+
+/* u tamnom modu boja bordera celija se mijenja */
+body.dark .materials-table td {
+    border-color: var(--current-mode-input);
+}
+
+.materials-table tbody tr:hover {
+    background: var(--blue-50);
+}
+
+/* u tamnom modu mijenja se boja kojom se oboji red kada se predje kursorom preko njega */
+body.dark .materials-table tbody tr:hover {
+    background: var(--current-mode-input);
+}
+
+.materials-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+
+/*------------------------------ GALERIJA ----------------------------------*/
+
+
+
+.galerija-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* slike u galeriji su pozicionirane u tri kolone */
+    gap: 1em;
+}
+
+.galerija-item {
+    border-radius: 1.25em;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    aspect-ratio: 4/3; /* odnos celije u galeriji je 4:3 */
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* kada se predje kursorom preko slike celija se skalira */
+.galerija-item:hover {
+    transform: scale(1.02);
+}
+
+.galerija-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* velicina slike je takva da prekriva citavu celiju */
+    object-position: center; /* slika je centrirana u celiji */
+    transition: transform 0.35s ease;
+}
+
+/* kada se predje kursorom preko slike slika unutar celije se skalira */
+.galerija-item:hover img {
+    transform: scale(1.05);
+}
