@@ -1371,10 +1371,274 @@ body.dark .materials-table tbody tr:hover {
     transform: scale(1.05);
 }
 
+/*----------------- IMAGE MAP -----------------------*/
 
 
 
+.printer-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
 
+.printer-img {
+    width: 45%;
+    height: auto;
+    display: block;
+    border-radius: 1.25em; /* zaobljene ivice slike */
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+
+    background-color: var(--current-mode-card); /* slika je providna pa joj dajemo pozadinu*/
+
+    user-select: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.printer-info {
+    display: none;
+    margin-top: 1.5em;
+    padding: 1.5em;
+    background: var(--current-mode-smallcard);
+    border: 1px solid var(--blue-400);
+    border-radius: 1.25em;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+
+    animation: fadeIn 0.3s ease; /* kada se info pojavi ima fade in animaciju definisanu iznad */
+}
+
+/* u tamnom modu info ima drugu pozadinu*/
+body.dark .printer-info {
+    border-color: var(--blue-700);
+}
+
+
+.printer-info h4 {
+    font-size: 1.1em;
+    font-weight: 600;
+    color: var(--blue-700);
+    margin-bottom: 0.5em;
+}
+
+/* u tamnom modu naslov info sekcije ima drugu boju*/
+body.dark .printer-info h4 {
+    color: var(--blue-500);
+}
+
+.printer-info p {
+    opacity: 0.8;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+/*------------------- PROCES SEKCIJA ------------------------*/
+
+.proces-wrapper {
+    background: var(--current-mode-card);
+    border-radius: 1.25em;
+    padding: 2em;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    margin-bottom: 1.5em;
+}
+
+.proces-item {
+    padding: 1.5em 0;
+    border-bottom: 1px solid var(--blue-100);
+}
+
+/*zadnjem elementu ne treba border-bottom*/
+.proces-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+/* prvom elementu ne treba padding */
+.proces-item:first-child {
+    padding-top: 0;
+}
+
+.proces-item h4 {
+    font-size: 1em;
+    font-weight: 600;
+    margin-bottom: 0.4em;
+    color: var(--blue-800);
+}
+
+
+.proces-item p {
+    opacity: 0.8; /* smanjujemo opacity paragrafa da bi vizuelno istakli naslov */
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+/* UGNJEZDENA LISTA */
+
+.lista-wrapper {
+    background: var(--current-mode-card);
+    border-radius: 1.25em;
+    padding: 2em;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+}
+
+.lista-wrapper h4 {
+    color: var(--blue-700);
+    font-weight: 600;
+    margin-bottom: 1em;
+    font-size: 1.2em;
+}
+
+
+.lista-wrapper > ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.lista-wrapper > ul > li {
+    color: var(--blue-700);
+    font-weight: 600;
+    font-size: 0.95em;
+}
+
+.lista-wrapper ul ul {
+    color: var(--blue-950);
+    list-style: disc;
+    padding-left: 1.5em;
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    opacity: 0.9;
+}
+
+.lista-wrapper ul ul li {
+    list-style: inside;
+    font-weight: 450;
+    opacity: 0.8;
+    font-size: 0.9em;
+}
+
+/* u tamnom modu mijenjamo sve ove elemente da imaju drugu boju teksta */
+body.dark .lista-wrapper h4,
+body.dark .proces-item h4,
+body.dark .lista-wrapper > ul > li {
+    color: var(--blue-500);
+}
+
+/* u tamnom modu ugnjezdena lista ima drugu boju teksta */
+body.dark .lista-wrapper ul ul {
+    color: var(--blue-400);
+    opacity: 0.7;
+}
+
+
+
+/*---------------- PREDNOSTI -------------------------*/
+
+.prednosti-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* kartice su rasporedjene u 2 kolone, imamo 4 kartice, znaci 2x2 grid*/
+    gap: 1.5em;
+}
+
+.prednost-card {
+    background: var(--current-mode-smallcard);
+    border-radius: 1.25em;
+    padding: 1.8em;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    border: 1px solid var(--blue-400);
+}
+
+.prednost-card h4 {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+.prednost-card p {
+    opacity: 0.8;
+    font-size: 0.9em;
+    line-height: 1.6;
+}
+
+
+
+/*------------------- KALKULATOR ---------------------------*/
+
+
+.kalkulator-wrapper {
+    background: var(--current-mode-card);
+    border-radius: 1.25em;
+    padding: 2em;
+    box-shadow: 0 0 20px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    max-width: 500px;
+}
+
+.kalk-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+
+.kalk-group label {
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.kalk-group input,
+.kalk-group select {
+    padding: 0.8em 1em;
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 0.75em;
+    font-family: Inter;
+    font-size: 0.9em;
+    outline: none;
+    transition: border 0.2s ease;
+
+    background: var(--current-mode-input);
+    color: var(--current-mode-txt);
+}
+
+/* kada su inputi fokusirani mijenjamo boju bodera*/
+.kalk-group input:focus,
+.kalk-group select:focus {
+    border: 1px solid var(--blue-500);
+}
+
+.kalk-result {
+    padding:  0.5em;
+    background: var(--current-mode-smallcard);
+    border-radius: 0.75em;
+    border: 1px solid var(--blue-400);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.kalk-result-txt {
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
+.kalk-result-cijena {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--blue-600);
+    margin-top: 0.2em;
+    margin-bottom: 0;
+}
+
+/* u tamnom modu tekst cijene ima drugu boju */
+body.dark .kalk-result-cijena {
+    color: var(--blue-500);
+}
 
 
 /* ----------------------- BACK TO TOP -------------------------------*/

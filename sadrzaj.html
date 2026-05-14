@@ -174,6 +174,123 @@
                 </div>
             </div>
         </section>
+        
+        <!-- IMAGE MAP -->
+        <section class="sadrzaj-section" id="printer">
+            <h2>Komponente 3D printera</h2>
+            <p>Kliknite na različite dijelove printera za više informacija</p>
+
+            <div class="printer-wrapper">
+                <picture>
+                    <source srcset="images/printerAnatomy.webp" type="image/webp">
+                    <img src="images/printerAnatomy.png" alt="3D Printer sa klikabilnim zonama" usemap="#printer-map" class="printer-img">
+                </picture>
+                
+                <!--MAPU DODAJE MEDIN-->
+
+                <div class="printer-info" id="printer-info">
+                    <h4 id="printer-info-title"></h4>
+                    <p id="printer-info-desc"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCES -->
+        <section class="sadrzaj-section" id="proces">
+            <h2>Proces izrade</h2>
+            
+            <div class="proces-wrapper">
+                <div class="proces-item">
+                    <h4>1. Priprema modela</h4>
+                    <p>Vaš 3D model se analizira i optimizuje za štampu. Provjeravamo geometriju, orijentaciju i dodajemo potrebne support strukture.</p>
+                </div>
+                <div class="proces-item">
+                    <h4>2. Slicing</h4>
+                    <p>Model se dijeli na slojeve i generiše G-code koji upravlja printerom. Određujemo parametre kao što su brzina, temperatura i debljina sloja.</p>
+                </div>
+                <div class="proces-item">
+                    <h4>3. Štampa</h4>
+                    <p>Printer nanosi materijal sloj po sloj prema programiranom kodu. Proces se prati u realnom vremenu kako bi se osigurao kvalitet.</p>
+                </div>
+                <div class="proces-item">
+                    <h4>4. Post-processing</h4>
+                    <p>Uklanjamo support strukture, čistimo i poliramo model. Na zahtjev vršimo dodatnu obradu kao što su bojenje ili površinska zaštita.</p>
+                </div>
+            </div>
+
+            <div class="lista-wrapper">
+                <h4>Tehnologije i materijali</h4>
+                <ul>
+                    <li>Materijali
+                        <ul>
+                            <li>PLA - Biodegradabilan, lak za štampu</li>
+                            <li>ABS - Otporan, izdržljiv</li>
+                            <li>Resin - Ultra visoka preciznost</li>
+                        </ul>
+                    </li>
+                    <li>Tehnologije
+                        <ul>
+                            <li>FDM - Fused Deposition Modeling</li>
+                            <li>SLA - Stereolithography</li>
+                            <li>SLS - Selective Laser Sintering</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- PREDNOSTI -->
+        <section class="sadrzaj-section" id="prednosti">
+            <h2>Prednosti 3D štampe</h2>
+            
+            <div class="prednosti-grid">
+                <div class="prednost-card">
+                    <h4>Brzina</h4>
+                    <p>Od ideje do gotovog proizvoda za 24-48 sati. Znatno brže od tradicionalnih metoda proizvodnje.</p>
+                </div>
+                <div class="prednost-card">
+                    <h4>Ekonomičnost</h4>
+                    <p>Nema potrebe za skupim alatima i kalupima. Idealno za male serije i prototipove.</p>
+                </div>
+                <div class="prednost-card">
+                    <h4>Kompleksnost</h4>
+                    <p>Mogućnost izrade geometrijski složenih oblika koji su nemogući tradicionalnim metodama.</p>
+                </div>
+                <div class="prednost-card">
+                    <h4>Personalizacija</h4>
+                    <p>Svaki proizvod može biti jedinstveno prilagođen bez dodatnih troškova ili vremena.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- KALKULATOR -->
+        <section class="sadrzaj-section" id="kalkulator">
+            <h2>Kalkulator cijene</h2>
+            <p>Izračunajte okvirnu cijenu vašeg 3D printa</p>
+
+            <div class="kalkulator-wrapper">
+                <div class="kalk-group">
+                    <label for="kalk-materijal">Materijal</label>
+                    <select id="kalk-materijal">
+                        <option value="3">PLA — 3 KM/100g</option>
+                        <option value="4">ABS — 4 KM/100g</option>
+                        <option value="4.5">PETG — 4.5 KM/100g</option>
+                        <option value="7">Nylon — 7 KM/100g</option>
+                        <option value="8">Resin — 8 KM/100g</option>
+                    </select>
+                </div>
+
+                <div class="kalk-group">
+                    <label for="kalk-tezina">Masa objekta (g)</label>
+                    <input type="number" id="kalk-tezina" placeholder="npr. 150" min="1" max="6">
+                </div>
+
+                <div class="kalk-result" id="kalk-result">
+                    <p class="kalk-result-txt">Unesite masu za izračun</p>
+                    <p class="kalk-result-cijena" id="kalk-cijena"></p>
+                </div>
+            </div>
+        </section>
     </main>
     <footer id="footer">
         <div class="footer-main">
