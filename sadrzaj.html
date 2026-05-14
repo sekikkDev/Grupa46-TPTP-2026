@@ -186,7 +186,15 @@
                     <img src="images/printerAnatomy.png" alt="3D Printer sa klikabilnim zonama" usemap="#printer-map" class="printer-img">
                 </picture>
                 
-                <!--MAPU DODAJE MEDIN-->
+                <!-- koordinate mape se skaliraju JS skriptom na osnovu velicine slike-->
+                <!-- nadjite IMAGE MAP sekciju JS kodu -->
+                <map name="printer-map">
+                    <area shape="rect" coords="50,190,295,245" alt="Okvir" title="Okvir" data-info="frame">
+                    <area shape="rect" coords="50,425,215,480" alt="Extruder" title="Extruder" data-info="extruder">
+                    <area shape="rect" coords="50,570,215,620" alt="Mlaznica" title="Mlaznica" data-info="nozzle">
+                    <area shape="rect" coords="50,715,230,800" alt="Printbed" title="Ploča za štampanje" data-info="printbed">
+                    <area shape="rect" coords="1190,220,1365,305" alt="Filament Kotur" title="Kotur s filamentom" data-info="filament">
+                </map>
 
                 <div class="printer-info" id="printer-info">
                     <h4 id="printer-info-title"></h4>

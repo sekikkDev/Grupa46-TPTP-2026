@@ -362,3 +362,136 @@ if (document.getElementById('back-to-top')) {
     });
 }
 
+// --------------------------------- IMAGE MAP ----------------------------------------------
+
+if (document.getElementById('printer-info')) {
+    const printerInfo = document.getElementById('printer-info');
+    const printerInfoTitle = document.getElementById('printer-info-title');
+    const printerInfoDesc = document.getElementById('printer-info-desc');
+
+    /* definisemo dictionary sa informacijama koje se pojavljuju kada se klikne odredjeni dio mape */ 
+    const printerData = {
+        nozzle: {
+            title: 'Mlaznica',
+            desc: 'Vrh kroz koji izlazi rastopljeni filament. Standardni prečnik je 0.4mm što omogućava preciznost do ±0.1mm.'
+        },
+        printbed: {
+            title: 'Ploča za štampanje',
+            desc: 'Površina na kojoj se gradi 3D objekt sloj po sloj. Zagrijava se do 60-100°C za bolju adheziju.'
+        },
+        extruder: {
+            title: 'Ekstruder',
+            desc: 'Motor koji gura filament prema nozzleu. Direktni extruder omogućava preciznije podavanje materijala.'
+        },
+        frame: {
+            title: 'Okvir',
+            desc: 'Konstrukcija printera od aluminijumskih profila. Rigidnost frame-a direktno utiče na kvalitet printa.'
+        },
+        filament: {
+            title: 'Kotur s filamentom',
+            desc: 'Kolut materijala za štampu. Standardni prečnik filamenta je 1.75mm sa tolerancijom ±0.03mm.'
+        }
+    };
+
+    // za svaki area element =>
+    document.querySelectorAll('area[data-info]').forEach(area => {
+        area.style.cursor = "pointer"; // sklonio sam href sa elementa pa se izgubio cursor, a iz nekog razloga ne dodaje se u css
+
+        // kada se klikne na area
+        area.addEventListener('click', (e) => {
+            const info = printerData[area.dataset.info]; // uzimamo info iz data-info sekcije
+            printerInfoTitle.textContent = info.title;  // stavljamo title iz dictionary
+            printerInfoDesc.textContent = info.desc;    // stavljamo desc iz dictionary
+            printerInfo.style.display = 'block'; // pravimo info vidljivim
+
+            printerInfo.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            // kad kliknemo nesto na slici skrolamo do objasnjenja
+        });
+    });
+
+
+    scaleImageMap();
+
+    function scaleImageMap() {
+        const img = document.querySelector('.printer-img');
+        const areas = document.querySelectorAll('area[data-info]');
+        
+        // lista originalnih koordinata
+        const originalCoords = [
+            [50, 190, 295, 245],
+            [50, 425, 215, 480],
+            [50, 570, 215, 620],
+            [50, 715, 230, 800],
+            [1190, 220, 1365, 305]
+        ];
+        
+        function scale() {
+            const originalWidth = img.naturalWidth; // originalna sirina slike na disku
+            
+            if (img.offsetWidth === 0 || img.naturalWidth === 0) return;
+
+            const currentWidth = img.offsetWidth; // trenutna sirina slike u browseru
+            const ratio = currentWidth / originalWidth;
+            
+            areas.forEach((area, i) => {
+                // ovdje za svaku klikabilnu area-u na slici nadjemo njene originalne koordinate
+                // onda uzmemo i skaliramo svaku koordinatu na osnovu izracunate proporcije
+                const coords = originalCoords[i];
+                const scaled = coords.map(c => Math.round(c * ratio));
+                area.coords = scaled.join(','); // samo spajamo koordinate zarezima x1,y1,x2,y2
+            });
+        }
+
+        // kada se slika ucita zovemo funkciju scale
+        if (img.complete) {
+            scale();
+            setTimeout(scale, 100);
+        } // ako je slika vec ucitana
+        
+        img.addEventListener('load', scale); //skaliramo koordinate kad se loaduje sajt
+        window.addEventListener('resize', scale); //skaliramo koordinate svaki put kad se velicina "browsera" promijeni
+        
+    }
+}
+
+
+
+
+
+// --------------------------- KALKULATOR --------------------------------
+
+if (document.getElementById('kalk-tezina')) {
+
+    // referenciramo odredjene elemente sa stranice
+    const materijal = document.getElementById('kalk-materijal');
+    const tezina = document.getElementById('kalk-tezina');
+    const cijena = document.getElementById('kalk-cijena');
+    const resultTxt = document.querySelector('.kalk-result-txt');
+
+    function izracunaj() {
+        const gram = parseFloat(tezina.value); // uzimamo vrijednost tezine u inputima
+        const cijenaPer100g = parseFloat(materijal.value); // uzmemo izabranu cijenu iz select inputa
+
+        if (!gram || gram <= 0) {
+            // ako je input prazan
+            resultTxt.textContent = 'Unesite masu za izračun';  
+            cijena.textContent = '';
+            return;
+        }
+
+        // racunamo ukupnu cijenu i stavljamo je u element sa dodatkom KM
+        const ukupno = (gram / 100) * cijenaPer100g;
+        resultTxt.textContent = 'Okvirna cijena:';
+        cijena.textContent = ukupno.toFixed(2) + ' KM';
+    }
+
+    // kada unesemo neku masu
+    tezina.addEventListener('input', () => {
+        // maksimalna velicina broja je 6 cifara
+        if (tezina.value.length > 6) {
+            tezina.value = tezina.value.slice(0,6);
+        }
+        izracunaj(); // zovemo funkciju koja racuna
+    });
+    materijal.addEventListener('change', izracunaj);
+}
