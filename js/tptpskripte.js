@@ -495,3 +495,24 @@ if (document.getElementById('kalk-tezina')) {
     });
     materijal.addEventListener('change', izracunaj);
 }
+
+// ---------------------- HAMBURGER MENI-----------------------------------
+
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileOverlay = document.getElementById('mobile-overlay');
+
+function toggleMenu() {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+    mobileOverlay.classList.toggle('open');
+    document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : ''; 
+    // stranica se ne moze skrolat kad je open meni
+}
+
+hamburger.addEventListener('click', toggleMenu);
+mobileOverlay.addEventListener('click', toggleMenu);
+
+document.querySelectorAll('.mobile-links a').forEach(link => {
+    link.addEventListener('click', toggleMenu);
+});

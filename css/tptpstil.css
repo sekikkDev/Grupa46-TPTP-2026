@@ -1695,3 +1695,412 @@ body.dark .kalk-result-cijena {
 .back-to-top:hover {
     transform: scale(1.1);
 }
+/* --------------------- RESPONSIVE (medin) ----------------------------------*/
+
+/* burger meni navigacija */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+
+    position: fixed;
+    right: 1.5em;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 9999;
+}
+
+.hamburger span {
+    display: block;
+    width: 1.8em;
+    height: 2px;
+    background: var(--current-mode-txt);
+    border-radius: 2px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* animacija pretvaranja ikonice u x kada se klikne hamburger */
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--current-mode-bg);
+    box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+    z-index: 500;
+    padding: 8vh 2em 2em;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+.mobile-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    margin-top: 2em;
+}
+
+.mobile-links a {
+    color: var(--current-mode-txt);
+    font-size: 1.2em;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.mobile-links a:hover {
+    color: var(--blue-500);
+}
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    z-index: 499;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* posto su buttoni kopirani iz originalnog navbara, oni tamo imaju ::before, a ovdje ne trebaju imat*/
+.mobile-btns::before {
+    display: none;
+}
+
+.mobile-btns {
+    width: 30%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 2em;
+    margin-top: 1em;
+    box-sizing: border-box;
+}
+
+.mobile-btns .nav-btn {
+    justify-content: flex-start;
+}
+
+.mobile-btns .nav-btn svg {
+    width: 1.4em;
+}
+
+
+body.dark .mobile-btns .dark-mode-label svg{
+    transform: rotate(-360deg);
+}
+
+body.dark .mobile-btns .dark-mode-label svg .moon-path {
+    opacity: 1;
+}
+body.dark .mobile-btns .dark-mode-label svg .sun-circle,
+body.dark .mobile-btns .dark-mode-label svg .sun-rays{
+    opacity: 0;
+}
+
+
+/* popravljam dijelove koda tako da bude lakse raditi responziv*/
+
+.loader {
+    height: 100dvh;
+}
+
+header {
+    font-size: 1.3em;
+}
+
+.nav-logo {
+    font-size: 1.2em;
+}
+
+
+#content {
+    width: 100%;
+}
+
+
+@media (max-width: 2560px) {
+    body {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 2200px) {
+    body {
+        font-size: 1.26rem;
+    }
+}
+
+@media (max-width: 1920px) {
+    body {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 1600px) {
+    body {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 1400px) {
+    body {
+        font-size: 0.75rem;
+    }
+
+}
+
+@media (max-width: 1200px) {
+    body {
+        font-size: 0.65rem;
+    }
+
+    #cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    #content {
+        padding-left: 4em;
+        padding-right: 4em;
+        gap: 1em;
+    }
+
+    header {
+        padding-left: 4em;
+        padding-right: 4em;   
+    }
+
+    .cards {
+        align-items: center;
+    }
+
+    #sadrzaj {
+        padding-left: 6em;
+        padding-right: 6em;
+    }
+
+    .printer-img {
+        width: 60%;
+    }
+
+    .proces-wrapper,
+    .lista-wrapper,
+    .prednost-card,
+    .kalkulator-wrapper {
+        font-size: 1.1em;
+    }
+}
+
+@media (max-width: 860px) {
+    body {
+        font-size: 1rem;
+        overflow-x: hidden;
+    }
+
+    #content, #sadrzaj, #contact {
+        padding-left: 4em;
+        padding-right: 4em;
+    }
+
+    header {
+        padding-left: 2em;
+        padding-right: 2em;   
+        width: 100%;
+    }
+
+    .logo-txt {
+        display: none;
+    }
+
+    #content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .side-filter {
+        width: 100%;
+        position: inherit;
+        align-items: center;
+    }
+
+    #filter {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .filter-item {
+        width: auto;
+    }
+
+    #counter {
+        width: 12em;
+    }
+
+    .cards {
+        width: 100%;
+        align-items: center;
+    }
+
+    #cards {
+        width: 100%;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .galerija-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .printer-img {
+        width: 100%;
+    }
+
+    .contact-info-cards {
+        width: 100%;
+        font-size: 0.9em;
+    }
+
+    .info-card {
+        font-size: 0.9em;
+    }
+        
+    .form-wrapper {
+        width: 100%;
+    }
+
+
+}
+
+@media (max-width: 650px) {
+    body {
+        font-size: 1.1rem;
+    }
+
+    #content, #sadrzaj, #contact {
+        padding-left: 2em;
+        padding-right: 2em;
+    }
+
+    header {
+        padding-left: 2em;
+        padding-right: 2em;   
+        width: 100%;
+    }
+
+    .nav-main {
+        display: none;
+    }
+
+    .nav-btns {
+        display: none;
+    }
+
+    .mobile-btns {
+        display: grid;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    footer {
+        font-size: 0.8em;
+    }
+
+    .prednost-card {
+        font-size: 0.9em;
+    }
+
+    .contact-info-cards {
+        width: 50%;
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+
+
+}
+
+@media (max-width: 550px) {
+    body {
+        font-size: 1em;
+    }
+    #cards {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .footer-main  {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .footer-col {
+        align-items: center;
+    }
+
+    #filter {
+        flex-direction: column;
+    }
+
+    .filter-item {
+        width: 100%;
+    }
+
+    .galerija-grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .contact-info-cards {
+        width: 100%;
+    }
+
+    .form-btns {
+        flex-direction: column;
+    }
+
+    .btn-send,
+    .btn-reset {
+        width: 100%;
+    }
+
+    .form-wrapper {
+        padding: 1.5em;
+        font-size: 1.1em;
+    }
+}
