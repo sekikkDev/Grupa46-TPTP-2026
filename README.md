@@ -7,6 +7,9 @@ Portfolio lokalnog poduzetnika — 3D Fabrika, Tuzla
 ## Opis
 Web stranica za lokalnu firmu iz Tuzle koja se bavi profesionalnim 3D printanjem i izradom prototipova po narudžbi.
 
+## Screenshot
+![Screenshot naslovne stranice](./images/mainscreen.png)
+
 ## Članovi grupe
 | Ime i prezime | Username | Zadatak |
 |----------|----------|----------|
