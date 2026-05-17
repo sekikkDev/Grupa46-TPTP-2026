@@ -1844,6 +1844,14 @@ body.dark .mobile-btns .dark-mode-label svg .sun-rays{
 
 /* popravljam dijelove koda tako da bude lakse raditi responziv*/
 
+html {
+    background-color: var(--light-mode-bg);
+}
+
+html:has(body.dark) {
+    background-color: var(--dark-mode-bg);
+}
+
 .loader {
     height: 100dvh;
 }
