@@ -17,14 +17,28 @@ window.addEventListener('load', () => {
     loader.classList.add('hidden');
 
     // kada se stranica loaduje skrivamo loader
+
+    // ------------- PWA --------------------
+    if ('serviceWorker' in navigator) { 
+        navigator.serviceWorker.register('./js/sw.js');
+    }
 });
+
+
 
 
 // ------------------------- DARK MODE ------------------------------
 
 const toggle = document.getElementById('dark-mode-toggle');
+// citamo sistemsku preferenciju iz CSS varijable
+const prefersColor = getComputedStyle(document.documentElement)
+    .getPropertyValue('--prefers-color')
+    .trim()
+    .replace(/"/g, '');
 
-if (localStorage.getItem('tema') === 'dark') {
+const savedTema = localStorage.getItem('tema');
+
+if (savedTema === 'dark') {
         // provjeravamo da li postoji dark tema unutar localStorage
         // provjeravamo  samo dark temu jer je light tema default
 
@@ -33,6 +47,10 @@ if (localStorage.getItem('tema') === 'dark') {
 
         // dodajemo .dark klasu na body, cime ce se promijeniti --current varijable u css i jos neki dijelovi definisani sa body.dark
         // checkiramo dark mode element, da bi se aktivirao css ikonice u navigaciji
+}
+else if (savedTema == null && prefersColor == "dark") {
+        document.body.classList.add('dark');
+        toggle.checked = true;
 }
 
 toggle.addEventListener('change', () => {
@@ -55,6 +73,7 @@ toggle.addEventListener("keydown", (e) => {
         // dispatchEvent funkcija okida event na elementu, kao da je to korisnik sam uradio, time uspjesno simuliramo space tipku na checkbox
     }
 })
+
 
 
 // --------- COUNTER PRINTANJA ------------------

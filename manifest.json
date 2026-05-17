@@ -1,0 +1,16 @@
+{
+    "name": "3D Fabrika",
+    "short_name": "3D Fabrika",
+    "description": "Profesionalna 3D štampa u Tuzli",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#F9FAFB", 
+    "theme_color": "#3B82F6",
+    "icons": [
+        {
+            "src": "images/logo-dark.png",
+            "sizes": "1254x1254",
+            "type": "image/png"
+        }
+    ]
+}
